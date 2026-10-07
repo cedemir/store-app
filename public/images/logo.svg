@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64" role="img" aria-label="Experts Store">
+  <defs>
+    <linearGradient id="es-bg-h" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#es-bg-h)"/>
+  <path d="M25 25v-3.5a7 7 0 0 1 14 0V25" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M17 24h30l-2.3 25a4 4 0 0 1-4 3.6H23.3a4 4 0 0 1-4-3.6Z" fill="#fff"/>
+  <g fill="#0a1830">
+    <rect x="26" y="31" width="3.2" height="15" rx="1.2"/>
+    <rect x="26" y="31" width="12" height="3.2" rx="1.6"/>
+    <rect x="26" y="36.9" width="9.5" height="3.2" rx="1.6"/>
+    <rect x="26" y="42.8" width="12" height="3.2" rx="1.6"/>
+  </g>
+  <path d="M51 8.5l1.5 3.6 3.6 1.5-3.6 1.5-1.5 3.6-1.5-3.6-3.6-1.5 3.6-1.5Z" fill="#fff" opacity=".9"/>
+  <text x="80" y="42" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.5" fill="#ffffff">Experts<tspan fill="#7dd3fc">Store</tspan></text>
+</svg>
