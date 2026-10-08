@@ -1,66 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Store App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplicação de loja virtual desenvolvida com Laravel 12, como projeto do ebook *Laravel 12: Criando Apps Web*. Ela tem uma vitrine pública com carrinho e checkout, uma área do cliente para acompanhar pedidos e um painel administrativo para gerenciar o catálogo, os usuários e os pedidos.
 
-## About Laravel
+## Funcionalidades
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Loja (área pública)
+- Vitrine de produtos em `/loja` e página de detalhe de cada produto (`/product/{slug}`)
+- Carrinho de compras: adicionar e remover itens e cancelar o carrinho
+- Cadastro e login de usuários
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Área do cliente (requer login)
+- Checkout e finalização do pedido, com página de confirmação
+- Listagem dos próprios pedidos em `/customers/my-orders`, com opção de cancelamento
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Painel administrativo (`/admin`)
+Acesso restrito a usuários com o papel `ROLE_ADMIN`.
+- Dashboard
+- CRUD de produtos, com upload e remoção de fotos
+- CRUD de categorias (cada produto pode ter várias categorias)
+- CRUD de usuários
+- Gestão de pedidos: listagem, edição e exclusão
 
-## Learning Laravel
+## Tecnologias utilizadas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Back-end
+- **[PHP](https://www.php.net/)** ^8.2
+- **[Laravel](https://laravel.com/)** ^12.0 (Eloquent ORM, Blade, Migrations, Factories e Seeders, Queues)
+- **[Laravel Tinker](https://github.com/laravel/tinker)**: REPL para interagir com a aplicação
+- **[MySQL](https://www.mysql.com/)**: banco de dados (`store_app`); sessões, cache e filas usam o driver `database`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Front-end
+- **[Blade](https://laravel.com/docs/blade)**: templates e componentes de view
+- **[Tailwind CSS](https://tailwindcss.com/)** ^4.1 (via `@tailwindcss/vite`)
+- **[Vite](https://vitejs.dev/)** ^6.0 com **[laravel-vite-plugin](https://github.com/laravel/vite-plugin)**: build dos assets
+- **[Axios](https://axios-http.com/)**: requisições HTTP
+- **[Bunny Fonts](https://fonts.bunny.net/)**: fonte Inter
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Desenvolvimento e testes
+- **[PHPUnit](https://phpunit.de/)** ^11.5: testes automatizados
+- **[Mockery](https://github.com/mockery/mockery)**: mocks para testes
+- **[Faker](https://fakerphp.org/)**: dados fictícios para factories e seeders
+- **[Laravel Pint](https://laravel.com/docs/pint)**: padronização de código
+- **[Laravel Sail](https://laravel.com/docs/sail)**: ambiente Docker
+- **[Laravel Pail](https://github.com/laravel/pail)**: visualização de logs no terminal
+- **[Collision](https://github.com/nunomaduro/collision)**: relatórios de erro no console
+- **[Concurrently](https://github.com/open-cli-tools/concurrently)**: executa servidor, fila e Vite juntos (`composer dev`)
 
-## Laravel Sponsors
+## Pré-requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2 ou superior
+- Composer
+- Node.js e npm
+- MySQL
 
-### Premium Partners
+## Instalação
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. Instale as dependências do PHP e do JavaScript:
 
-## Contributing
+   ```bash
+   composer install
+   npm install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Crie o arquivo de ambiente e gere a chave da aplicação:
 
-## Code of Conduct
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Crie no MySQL um banco chamado `store_app` e, se necessário, ajuste as variáveis `DB_*` no `.env`.
 
-## Security Vulnerabilities
+4. Execute as migrations e popule o banco com dados de exemplo (10 usuários e 30 produtos com fotos):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## License
+5. Crie o link público do storage, necessário para exibir as fotos dos produtos:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   php artisan storage:link
+   ```
+
+## Executando o projeto
+
+Para subir o servidor, o worker de filas e o Vite de uma vez:
+
+```bash
+composer dev
+```
+
+A aplicação fica disponível em http://localhost:8000. A rota `/` redireciona para a tela de login, e a loja fica em `/loja`.
+
+Para gerar os assets de produção:
+
+```bash
+npm run build
+```
+
+## Acesso ao painel administrativo
+
+Todo usuário é criado com o papel `ROLE_CUSTOMER`. Os usuários gerados pelo seeder usam a senha `password`. Para promover um deles a administrador, use o Tinker:
+
+```bash
+php artisan tinker
+```
+
+```php
+App\Models\User::first()->forceFill(['role' => 'ROLE_ADMIN'])->save();
+```
+
+Depois, faça login com o e-mail desse usuário e acesse `/admin`.
+
+## Testes
+
+```bash
+php artisan test
+```
+
+## Licença
+
+Projeto distribuído sob a [licença MIT](https://opensource.org/licenses/MIT).
